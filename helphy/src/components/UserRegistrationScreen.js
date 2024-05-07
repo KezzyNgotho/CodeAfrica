@@ -18,7 +18,7 @@ const RegistrationScreen = ({ userAddress }) => {
   const [Web3 , setWeb] = useState (undefined);
   const [Contract , setContract] = useState(undefined);
   const [UserRegistration ,setRegistration ] = useState(undefined);
-  // Define abi and address variables from UserRegistration.json
+ 
 
   useEffect (async () => {
 const Web3 = getWeb3();
