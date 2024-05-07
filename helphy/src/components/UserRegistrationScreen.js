@@ -5,25 +5,7 @@ import '../RegistrationScreen.css';
 import UserRegistration from '../abis/UserRegistration.json'; // Assuming UserRegistration.json is your smart contract ABI file
 import Web3 from 'web3';
 
-const getWeb3 =() =>{
-  return new Web3('http://localhost:9545');
 
-}
-const getContract = async web3 =>{
-  const networkId = await web3.eth.net.getId();
-      console.log("Network ID:", networkId);
-  
-      const network = UserRegistration.networks[networkId];
-      console.log("Network Data:", networkData);
-       return new web3.eth.Contract(
-        
-        UserRegistration.abi,
-        network && network.address
-
-       );
-  
-
-};
 
 const RegistrationScreen = ({ userAddress }) => {
   const [role, setRole] = useState('');
