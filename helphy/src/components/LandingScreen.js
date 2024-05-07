@@ -31,8 +31,8 @@ const LandingScreen = () => {
   <div className="container">
     <h2>Welcome to Helphy</h2>
     <p>A decentralized solution for managing pharmaceutical supply chains.</p>
-  {/*   <Link to="/verify-identity" className="btn">Get Started</Link> */}
-    <Link to="/MedicineProvider" className="btn">Get Started</Link>
+   <Link to="/verify-identity" className="btn">Get Started</Link> 
+   {/*  <Link to="/MedicineProvider" className="btn">Get Started</Link> */}
   </div>
 </section>
 
