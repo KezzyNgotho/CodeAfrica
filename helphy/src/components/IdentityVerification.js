@@ -55,8 +55,8 @@ const IdentityVerification = () => {
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Contact</Nav.Link>
             <Nav.Link href="#">Services</Nav.Link>
-           {/*  <Nav.Link href="/register">Register</Nav.Link> */}
-            <Nav.Link href="/HospitalDashboard">Register</Nav.Link>
+           <Nav.Link href="/register">Register</Nav.Link> 
+            
         </Nav>
     </Navbar.Collapse>
 </Navbar>
