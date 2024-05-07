@@ -1,0 +1,142 @@
+/* IdentityVerification.css */
+
+/* Background Image Styles */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.doctor-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* Top Bar Styles */
+.top-bar {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.caligraphed-heading {
+   
+    font-size: 24px; /* Increased font size for heading */
+    color: #2C4E80;
+    text-transform: uppercase;
+}
+
+.sub-heading {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Verification Form Styles */
+/* Verification Form Styles */
+.verification-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-message {
+    margin-top: 20px; /* Add margin to separate error message */
+}
+
+.error-message p {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.error-message p a {
+    color: #ff0000;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 15px; /* Add margin between form controls */
+}
+
+.form-control:focus {
+    border-color: #2C4E80; /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(44, 78, 128, 0.25); /* Add focus shadow */
+}
+
+.btn-primary {
+    width: 100%; /* Make the button full-width */
+    background-color: #2C4E80;
+    width: 190px;
+    align-self: center;
+    align-content: center;
+}
+
+/* Navbar Styles */
+/* Navbar Styles */
+/* Navbar Styles */
+/* Navbar Styles */
+.navbar {
+    background-color: #fff; /* Change the background color */
+    padding: 10px 20px; /* Adjust the padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.navbar-brand {
+   
+    font-size: 24px; /* Increase the font size */
+    color: #2C4E80;
+    display: flex; /* Enable flexbox layout */
+    align-items: center; /* Align items vertically */
+    align-items: flex-end;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 20px; /* Adjust margin to separate items */
+}
+
+.nav-link {
+    padding: 10px 15px; /* Adjust the padding */
+    color: #2C4E80;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ffc107;
+}
+
+.navbar-toggler-icon {
+    color: #2C4E80; /* Change the toggle icon color */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f9fa;
+    padding: 5px; /* Adjusted padding */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    align-content: center;
+}
+

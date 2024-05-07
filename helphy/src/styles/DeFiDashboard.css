@@ -1,0 +1,53 @@
+.defi-dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-title {
+    margin-bottom: 30px;
+    color: #2C4E80;
+}
+
+.defi-card {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 18px;
+    color: #2C4E80;
+    margin-bottom: 20px;
+}
+
+.overview-icon {
+    font-size: 18px;
+    color: #2C4E80;
+}
+
+.overview-value {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2C4E80;
+}
+
+.create-pool-btn {
+    background-color: #2C4E80;
+    border-color: #2C4E80;
+    color: #fff;
+}
+
+.create-pool-btn:hover {
+    background-color: #2C4E80;
+    border-color: #2C4E80;
+}
+
+.view-all-btn {
+    background-color: #2C4E80;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.view-all-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
