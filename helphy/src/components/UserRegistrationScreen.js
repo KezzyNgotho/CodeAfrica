@@ -1,11 +1,7 @@
- import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Spinner, Alert, Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../RegistrationScreen.css';
-import UserRegistration from '../abis/UserRegistration.json'; // Assuming UserRegistration.json is your smart contract ABI file
-import Web3 from 'web3';
-
-
 
 const RegistrationScreen = ({ userAddress }) => {
   const [role, setRole] = useState('');
@@ -15,22 +11,27 @@ const RegistrationScreen = ({ userAddress }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [Web3 , setWeb] = useState (undefined);
-  const [Contract , setContract] = useState(undefined);
-  const [UserRegistration ,setRegistration ] = useState(undefined);
- 
 
-  useEffect (async () => {
-const Web3 = getWeb3();
-const Contract = await getContract(Web3);
-const UserRegistration = await Contract.methods.UserRegistration().call();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-setWeb3(Web3);
-setContract(Contract);
-setUserRegistration(UserRegistration)
+    try {
+      // Place your contract interaction logic here
 
-})
-  
+      // Reset form fields
+      setRole('');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setError('');
+    } catch (err) {
+      setError(err.message || 'An error occurred during registration');
+    } finally {
+      setLoading(false);
+    }
+  };
  
   return (
     <div className="background-image-container">

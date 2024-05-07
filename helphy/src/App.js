@@ -5,6 +5,7 @@ import Dashboard from '../src/components/Dashboard';
 import LoginScreen from '../src/components/IdentityVerification';
 import RegisterScreen from '../src/components/UserRegistrationScreen';
 import VerifyIdentityScreen from '../src/components/IdentityVerification';
+import Medicineprovider from '../src/components/MedicineProvider'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/verify-identity" element={<VerifyIdentityScreen />} />
           <Route path="/Dash" element={<Dashboard />} />
+          <Route path="/MedicineProvider" element={<Medicineprovider />} />
 
         </Routes>
       </div>

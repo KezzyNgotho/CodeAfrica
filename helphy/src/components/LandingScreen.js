@@ -5,6 +5,7 @@ import doctorImage from '../assets/pexels-negativespace-48604.jpg'; // Import pl
 import tracking from '../assets/pexels-googledeepmind-17485658.jpg';
 import security from '../assets/pexels-pixabay-60504.jpg';
 import transparency from '../assets/pexels-googledeepmind-17483874.jpg'
+import backgroundImage from '../assets/pexels-pietrozj-360622.jpg'
 
 
 const LandingScreen = () => {
@@ -13,7 +14,7 @@ const LandingScreen = () => {
       {/* Navigation Bar */}
       <nav className="navbar">
         <div className="container">
-          <h1>PharmaChain</h1>
+          <h1>Helphy</h1>
           <ul className="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#features">Features</a></li>
@@ -26,13 +27,15 @@ const LandingScreen = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <h2>Welcome to PharmaChain</h2>
-          <p>A decentralized solution for managing pharmaceutical supply chains.</p>
-          <Link to="/verify-identity" className="btn">Get Started</Link>
-        </div>
-      </section>
+      <section className="hero" style={{ backgroundImage: `url(${backgroundImage})` }}>
+  <div className="container">
+    <h2>Welcome to Helphy</h2>
+    <p>A decentralized solution for managing pharmaceutical supply chains.</p>
+  {/*   <Link to="/verify-identity" className="btn">Get Started</Link> */}
+    <Link to="/MedicineProvider" className="btn">Get Started</Link>
+  </div>
+</section>
+
 
       {/* About Section */}
       <section id="about" className="about">
@@ -40,7 +43,7 @@ const LandingScreen = () => {
           <h2>About us</h2>
           <div className="about-content">
             <div className="about-text">
-              <p>PharmaChain is a blockchain-based platform designed to revolutionize the pharmaceutical industry. It provides a transparent and secure way to track and manage the supply chain from production to distribution, ensuring the authenticity and safety of pharmaceutical products.</p>
+              <p>Helphy is a blockchain-based platform designed to revolutionize the pharmaceutical industry. It provides a transparent and secure way to track and manage the supply chain from production to distribution, ensuring the authenticity and safety of pharmaceutical products.</p>
             </div>
             <div className="about-image">
               <img src={doctorImage} alt="Doctor" />
@@ -84,7 +87,7 @@ const LandingScreen = () => {
           <h2>Contact Us</h2>
           <p>If you have any questions or inquiries, feel free to contact us:</p>
           <ul>
-            <li>Email: info@pharmachain.com</li>
+            <li>Email: info@helphy.com</li>
             <li>Phone: +1 (123) 456-7890</li>
           </ul>
         </div>
@@ -93,7 +96,7 @@ const LandingScreen = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2024 PharmaChain. All rights reserved.</p>
+          <p>&copy; 2024 Helphy. All rights reserved.</p>
         </div>
       </footer>
     </div>

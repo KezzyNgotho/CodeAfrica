@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, Spinner, Alert, Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Web3 from 'web3';
-import identityVerificationABI from '../abis/IdentityVerification.json';
-import { Link } from 'react-router-dom'; // assuming you're using React Router for navigation
-import '../styles/IdentityVerification.css'; // Import CSS file for styling
-import doctorImage from '../assets/pexels-negativespace-48604.jpg'; // Import medical-themed image
+import { Link } from 'react-router-dom'; 
+import '../styles/IdentityVerification.css'; 
+import doctorImage from '../assets/pexels-negativespace-48604.jpg'; 
 import { FaCapsules } from 'react-icons/fa';
 
 const IdentityVerification = () => {
     const [web3, setWeb3] = useState(null);
-    const [contract, setContract] = useState(null);
+   
     const [username, setUsername] = useState('');
     const [loading, setLoading] = useState(false);
-    const [isValidUsername, setIsValidUsername] = useState(true);
+    
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -36,39 +35,12 @@ const IdentityVerification = () => {
     useEffect(() => {
         const initContract = async () => {
             if (web3) {
-                const networkId = await web3.eth.net.getId();
-                const deployedNetwork = identityVerificationABI.networks[networkId];
-                const instance = new web3.eth.Contract(
-                    identityVerificationABI.abi,
-                    deployedNetwork && deployedNetwork.address,
-                );
-                setContract(instance);
+                // Initialize contract instance
             }
         };
 
         initContract();
     }, [web3]);
-
-    const verifyIdentity = async () => {
-        try {
-            setLoading(true);
-            const accounts = await web3.eth.getAccounts();
-            const isValid = await contract.methods.isUsernameValid(username).call({ from: accounts[0] });
-            setIsValidUsername(isValid);
-            if (isValid) {
-                console.log('Identity verified for username:', username);
-                // Redirect to dashboard upon successful verification
-                window.location.href = '/dashboard';
-            } else {
-                setError('Username does not exist. Please enter a valid username or register.');
-            }
-        } catch (error) {
-            console.error(error);
-            setError('An error occurred while verifying identity. Please try again later.');
-        } finally {
-            setLoading(false);
-        }
-    };
 
     return (
         <div>
@@ -78,7 +50,7 @@ const IdentityVerification = () => {
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto"> {/* Added ml-auto class */}
+        <Nav className="ml-auto"> 
             <Nav.Link href="#">Home</Nav.Link>
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Contact</Nav.Link>
@@ -103,7 +75,7 @@ const IdentityVerification = () => {
                             <Form.Control type="text" placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </Form.Group>
                         {error && <Alert variant="danger">{error}</Alert>}
-                        <Button variant="primary" onClick={verifyIdentity} disabled={loading}>
+                        <Button variant="primary" disabled={loading}>
                             {loading ? (
                                 <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
                             ) : (
@@ -111,11 +83,6 @@ const IdentityVerification = () => {
                             )}
                         </Button>
                     </Form>
-                    {!isValidUsername && (
-                        <div className="error-message">
-                            <p>Username does not exist. Please <Link to="/register">register</Link> or try again.</p>
-                        </div>
-                    )}
                 </div>
             </div>
             {/* Footer Section */}
