@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 contract UserRegistry {
@@ -12,6 +12,7 @@ contract UserRegistry {
     }
 
     mapping(address => User) public users;
+    mapping(bytes32 => address) public usernameToAddress; // New mapping to store the address corresponding to a username
 
     event UserRegistered(address indexed userAddress, Role indexed role);
 
@@ -27,6 +28,7 @@ contract UserRegistry {
         bytes calldata data
     ) public {
         require(users[msg.sender].username.length == 0, "User already registered");
+        require(usernameToAddress[username] == address(0), "Username already exists"); // Ensure username is unique
 
         bytes32 offchainDataHash;
         if (role == Role.Patient || role == Role.Hospital) {
@@ -38,9 +40,18 @@ contract UserRegistry {
         }
 
         users[msg.sender] = User(username, keccak256(abi.encodePacked(password)), role, offchainDataHash);
+        usernameToAddress[username] = msg.sender; // Store the address corresponding to the username
         storeOffchainData(msg.sender, abi.encodePacked(offchainDataHash));
 
         emit UserRegistered(msg.sender, role);
+    }
+
+    function authenticate(bytes32 username, bytes32 password) public view returns (bool) {
+        address userAddress = usernameToAddress[username];
+        if (userAddress == address(0)) {
+            return false; // User not found
+        }
+        return users[userAddress].passwordHash == keccak256(abi.encodePacked(password)); // Check password hash
     }
 
     function isUserOfRole(Role role) public onlyRegistered view returns (bool) {
