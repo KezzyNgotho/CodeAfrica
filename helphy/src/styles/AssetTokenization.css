@@ -1,0 +1,25 @@
+.asset-tokenization-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .asset-tokenization-title {
+    margin-bottom: 20px;
+  }
+  
+  .asset-tokenization-description {
+    margin-bottom: 30px;
+  }
+  
+  .mint-tokens-button {
+    background-color: #2C4E80;
+    border-color: #007bff;
+  }
+  
+  .mint-tokens-button:hover {
+    background-color: #0056b3;
+    border-color: #2C4E80;
+  }
+  
