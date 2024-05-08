@@ -9,6 +9,11 @@
   "author": "Kezzy and Henry",
   "license": "ISC",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.2",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "dependencies": {
+    "ethers": "^6.12.1"
   }
 }
