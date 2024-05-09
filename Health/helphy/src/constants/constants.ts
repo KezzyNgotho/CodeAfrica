@@ -1,4 +1,4 @@
-import userRegistration from '/home/keziah/CodeAfrica/Health/helphy/src/abi/UserRegistration.json';
+import userRegistration from '/home/mkawazungu/CodeAfrica/Health/helphy/src/abi/UserRegistration.json'; //change to your absolute url
 
 
 
