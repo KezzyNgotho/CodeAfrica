@@ -11,10 +11,12 @@ interface AdditionalDetails {
   medicalHistory?: string;
   licenseNumber?: string;
   location?: string;
-  postalAddress?: string;
+  address?: string;
   companyName?: string;
   contactInfo?: string;
+  postalCode?: string; // New property added
 }
+
 
 const RegistrationScreen: React.FC = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
@@ -30,18 +32,18 @@ const RegistrationScreen: React.FC = () => {
 
   useEffect(() => {
     const initWeb3 = async () => {
-      if (window.ethereum) {
+      if ((window as any).ethereum) {
         try {
-          await window.ethereum.enable();
-          const _web3 = new Web3(window.ethereum);
+          await (window as any).ethereum.enable();
+          const _web3 = new Web3((window as any).ethereum);
           setWeb3(_web3);
           setIsMetaMaskConnected(true);
         } catch (error) {
           setIsMetaMaskConnected(false);
           console.error('User denied account access');
         }
-      } else if (window.web3) {
-        const _web3 = new Web3(window.web3.currentProvider);
+      } else if ((window as any).web3) { // Check if window.web3 exists
+        const _web3 = new Web3((window as any).web3.currentProvider);
         setWeb3(_web3);
         setIsMetaMaskConnected(true);
       } else {
@@ -49,43 +51,58 @@ const RegistrationScreen: React.FC = () => {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
       }
     };
-
+  
     initWeb3();
   }, []);
+  
+
 
   const handleMetaMaskConnect = async () => {
     try {
       const accounts = await web3?.eth.requestAccounts();
-      setIsMetaMaskConnected(accounts.length > 0);
-    } catch (err) {
+      if (accounts) {
+        setIsMetaMaskConnected(accounts.length > 0);
+      } else {
+        setError('Failed to retrieve accounts from MetaMask');
+      }
+    } catch (err: any) { // Explicitly define the type of err as any or Error
       setError(err.message || 'An error occurred while connecting to MetaMask');
     }
   };
-
+  
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+  
+    if (!isMetaMaskConnected) {
+      setError('Please connect your MetaMask wallet first.');
+      return;
+    }
+  
     try {
-      if (!isMetaMaskConnected) {
-        setError('Please connect your MetaMask wallet first.');
-        return;
-      }
-
-      // Check if the user has MetaMask identity here
-      // Navigate to dashboard if MetaMask identity exists
-      // Redirect logic to dashboard here
-
+      // Assuming you want to reset the form after successful creation
       setRole('');
       setUsername('');
       setAdditionalDetails({});
       setError('');
-    } catch (err) {
+  
+      // Ensure accounts is not undefined before proceeding
+      if (!web3 ||!web3.eth.accounts) {
+        setError('Web3 instance or accounts are not available.');
+        return;
+      }
+  
+      // Call createUser here after setting up the form
+      await createUser();
+    } catch (err :any) {
       setError(err.message || 'An error occurred during registration');
     } finally {
       setLoading(false);
     }
   };
+  
+  
 
   const createUser = async () => {
     if (walletClient) {
@@ -113,7 +130,7 @@ const RegistrationScreen: React.FC = () => {
               abi: userRegistrationABI,
               address: userRegistrationAddress,
               functionName: 'registerPharmacy',
-              args: [username, additionalDetails.licenseNumber, additionalDetails.postalAddress]
+              args: [username, additionalDetails.licenseNumber, additionalDetails.address]
             });
             break;
           case 'Supplier':
@@ -127,7 +144,7 @@ const RegistrationScreen: React.FC = () => {
           default:
             throw new Error('Invalid role');
         }
-        await publicClient.waitForTransactionReceipt({ hash });
+        await publicClient?.waitForTransactionReceipt({ hash });
       } catch (error) {
         console.error("Error", error);
       }
@@ -241,7 +258,7 @@ const RegistrationScreen: React.FC = () => {
                 )}
               </Form.Group>
               {error && <Alert variant="danger">{error}</Alert>}
-              <Button variant="primary" type="submit" disabled={loading} block onClick={() => createUser()}>
+              <Button variant="primary" type="submit" disabled={loading} onClick={() => createUser()}>
                 {loading ? (
                   <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
                 ) : (
