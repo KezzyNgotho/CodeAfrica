@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Spinner, Alert, Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Web3 from 'web3';
 import '../RegistrationScreen.css';
 import { useWalletClient, usePublicClient } from 'wagmi';
@@ -122,128 +120,157 @@ const RegistrationScreen = () => {
 
   return (
     <div className="background-image-container">
-      <div className="background-overlay"></div>
-      <Navbar bg="light" expand="lg" className="navbar">
-        <Navbar.Brand href="#">PharmaChain</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">About</Nav.Link>
-            <Nav.Link href="#">Contact</Nav.Link>
-            <Nav.Link href="#">Services</Nav.Link>
-            <Nav.Link href="/Dash">Login</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-      <div className="container mt-5">
-        <h2 className="text-center mb-4">User Registration Form</h2>
-        {!isMetaMaskConnected && (
-          <div className="metamask-connect">
-            <p>Please connect your MetaMask wallet to proceed.</p>
-            <Button variant="primary" onClick={handleMetaMaskConnect}>Connect MetaMask</Button>
-          </div>
-        )}
-          
-        {isMetaMaskConnected && (
-          <div className="registration-form-container">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formRole">
-                <Form.Label>Select Role</Form.Label>
-                <Form.Control as="select" value={role} onChange={(e) => setRole(e.target.value)}>
-                  <option value="">Select</option>
-                  <option value="Patient">Patient</option>
-                  <option value="Hospital">Hospital</option>
-                  <option value="Pharmacy">Pharmacy</option>
-                  <option value="Supplier">Supplier</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="formUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formAdditionalDetails">
-                <Form.Label>Additional Details</Form.Label>
-                {role === 'Patient' && (
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your medical history (optional)"
-                    value={additionalDetails.medicalHistory || ''}
-                    onChange={(e) => setAdditionalDetails({ ...additionalDetails, medicalHistory: e.target.value })}
-                  />
-                )}
-                {role === 'Hospital' && (
-                  <>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your hospital license number"
-                      value={additionalDetails.licenseNumber || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, licenseNumber: e.target.value })}
-                    />
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your hospital location (optional)"
-                      value={additionalDetails.location || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, location: e.target.value })}
-                    />
-                  </>
-                )}
-                {role === 'Pharmacy' && (
-                  <>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your pharmacy license number"
-                      value={additionalDetails.licenseNumber || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, licenseNumber: e.target.value })}
-                    />
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your pharmacy address"
-                      value={additionalDetails.address || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, address: e.target.value })}
-                    />
-                  </>
-                )}
-                {role === 'Supplier' && (
-                  <>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your supplier company name"
-                      value={additionalDetails.companyName || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, companyName: e.target.value })}
-                    />
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your supplier contact information"
-                      value={additionalDetails.contactInfo || ''}
-                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, contactInfo: e.target.value })}
-                    />
-                  </>
-                )}
-              </Form.Group>
-              {error && <Alert variant="danger">{error}</Alert>}
-              <Button variant="primary" type="submit" disabled={loading} block onClick={() => createUser()}>
-                {loading ? (
-                  <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-                ) : (
-                  'Register'
-                )}
-              </Button>
-            </Form>
-          </div>
-        )}
-      </div>
-      <footer className="footer">
-        <div className="container text-center">
-          <p>&copy; {new Date().getFullYear()} PharmaChain. All rights reserved.</p>
+    <div className="background-overlay"></div>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container">
+        <a className="navbar-brand" href="#">PharmaChain</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="#">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">About</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Contact</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Services</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/Dash">Login</a>
+            </li>
+          </ul>
         </div>
-      </footer>
+      </div>
+    </nav>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <h2 className="text-center mb-4">User Registration Form</h2>
+          {!isMetaMaskConnected && (
+            <div className="text-center">
+              <p>Please connect your MetaMask wallet to proceed.</p>
+              <button className="btn btn-primary" onClick={handleMetaMaskConnect}>Connect MetaMask</button>
+            </div>
+          )}
+
+          {isMetaMaskConnected && (
+            <div className="registration-form-container">
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="formRole" className="form-label">Select Role</label>
+                  <select className="form-select" id="formRole" value={role} onChange={(e) => setRole(e.target.value)}>
+                    <option value="">Select</option>
+                    <option value="Patient">Patient</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="Pharmacy">Pharmacy</option>
+                    <option value="Supplier">Supplier</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="formUsername" className="form-label">Username</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="formUsername"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="formAdditionalDetails" className="form-label">Additional Details</label>
+                  {role === 'Patient' && (
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter your medical history (optional)"
+                      value={additionalDetails.medicalHistory || ''}
+                      onChange={(e) => setAdditionalDetails({ ...additionalDetails, medicalHistory: e.target.value })}
+                    />
+                  )}
+                  {role === 'Hospital' && (
+                    <>
+                      <input
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="Enter your hospital license number"
+                        value={additionalDetails.licenseNumber || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, licenseNumber: e.target.value })}
+                      />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter your hospital location (optional)"
+                        value={additionalDetails.location || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, location: e.target.value })}
+                      />
+                    </>
+                  )}
+                  {role === 'Pharmacy' && (
+                    <>
+                      <input
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="Enter your pharmacy license number"
+                        value={additionalDetails.licenseNumber || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, licenseNumber: e.target.value })}
+                      />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter your pharmacy address"
+                        value={additionalDetails.address || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, address: e.target.value })}
+                      />
+                    </>
+                  )}
+                  {role === 'Supplier' && (
+                    <>
+                      <input
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="Enter your supplier company name"
+                        value={additionalDetails.companyName || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, companyName: e.target.value })}
+                      />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter your supplier contact information"
+                        value={additionalDetails.contactInfo || ''}
+                        onChange={(e) => setAdditionalDetails({ ...additionalDetails, contactInfo: e.target.value })}
+                      />
+                    </>
+                  )}
+                </div>
+                {error && <div className="alert alert-danger">{error}</div>}
+                <button type="submit" className="btn btn-primary w-100" disabled={loading} onClick={() => createUser()}>
+                  {loading ? (
+                    <div className="spinner-border spinner-border-sm" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  ) : (
+                    'Register'
+                  )}
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
+    <footer className="footer mt-5">
+      <div className="container text-center">
+        <p>&copy; {new Date().getFullYear()} PharmaChain. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
   );
 };
 
