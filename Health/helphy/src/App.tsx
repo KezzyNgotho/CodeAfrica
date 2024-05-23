@@ -1,19 +1,19 @@
-import React, { ReactNode } from 'react';
+
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { WagmiProvider } from 'wagmi';
 import { arbitrum, mainnet } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Update import
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Update import
 import LandingScreen from '../src/components/LandingScreen';
-import LoginScreen from '../src/components/IdentityVerification';
+
 import RegisterScreen from '../src/components/UserRegistrationScreen';
 import VerifyIdentityScreen from '../src/components/IdentityVerification';
 import Medicineprovider from '../src/components/MedicineProvider'
 import HospitalDashboard from './components/HospitalDashboard';
 import PharmacyDashboard from './components/PharmacyDashboard';
-import Dashsboard from '../src/components/Dashboard'
 import Dashboard from '../src/components/Dashboard';
+
 
 
 // 1. Setup QueryClient

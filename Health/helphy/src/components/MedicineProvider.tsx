@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, Row, Col, Nav, Button } from "react-bootstrap";
 import {
   FaUserCircle,
@@ -41,8 +41,8 @@ const MedicineProvider = () => {
             throw new Error("Function not implemented.");
           }
         }} />;
-      case "#asset-tokenization":
-        return <AssetTokenizationInterface mintTokens={undefined} />;
+        case '#asset-tokenization':
+          return <AssetTokenizationInterface mintTokens={async () => undefined} />;
       case "#dynamic-pricing":
         return <DynamicPricingMechanism updateMedicinePrice={undefined} />;
       
