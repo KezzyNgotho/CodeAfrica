@@ -9,7 +9,6 @@ import transparency from '../assets/pexels-googledeepmind-17483874.jpg'
 import backgroundImage from '../assets/pexels-pietrozj-360622.jpg'
 
 
-
 const LandingScreen = () => {
   return (
     <div className="landing-screen">
