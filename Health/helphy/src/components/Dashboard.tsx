@@ -21,7 +21,7 @@ import MedicineAvailabilityChecker from './MedicineAvailability';
 import DigitalHealthRecords from './HealthRecords';
 import PersonalizedHealthcareRecommendations from './HealthCareRecommendations';
 
-import '../styles/Dashboard.scss'; // Import custom CSS for dashboard styling
+import '../styles/Dashboard.css'; // Import custom CSS for dashboard styling
 
 const Dashboard: React.FC = () => {
   const [activeLink, setActiveLink] = useState<string>('#asset-tokenization');
