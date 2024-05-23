@@ -16,7 +16,7 @@ const PharmacyDashboard: React.FC = () => {
     const handleSelect = (selectedKey: string | null) => {
         setActiveLink(selectedKey || ''); // Use an empty string if selectedKey is null
     };
-    
+
     const renderComponent = () => {
         switch (activeLink) {
             case '#asset-tokenization':
