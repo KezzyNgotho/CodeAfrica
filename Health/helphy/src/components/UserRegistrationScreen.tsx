@@ -54,8 +54,6 @@ const RegistrationScreen: React.FC = () => {
     initWeb3();
   }, []);
   
-
-
   const handleMetaMaskConnect = async () => {
     try {
       const accounts = await web3?.eth.requestAccounts();
@@ -68,7 +66,6 @@ const RegistrationScreen: React.FC = () => {
       setError(err.message || 'An error occurred while connecting to MetaMask');
     }
   };
-  
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,8 +98,6 @@ const RegistrationScreen: React.FC = () => {
     }
   };
   
-  
-
   const createUser = async () => {
     if (walletClient) {
       try {
@@ -113,7 +108,7 @@ const RegistrationScreen: React.FC = () => {
               abi: userRegistrationABI,
               address: userRegistrationAddress,
               functionName: 'registerPatient',
-              args: [username, additionalDetails.medicalHistory]
+              args: [username, additionalDetails.medicalHistory || ''] // Provide default value
             });
             break;
           case 'Hospital':
@@ -121,7 +116,7 @@ const RegistrationScreen: React.FC = () => {
               abi: userRegistrationABI,
               address: userRegistrationAddress,
               functionName: 'registerHospital',
-              args: [username, additionalDetails.licenseNumber, additionalDetails.location]
+              args: [username, additionalDetails.licenseNumber || '', additionalDetails.location || ''] // Provide default values
             });
             break;
           case 'Pharmacy':
@@ -129,7 +124,7 @@ const RegistrationScreen: React.FC = () => {
               abi: userRegistrationABI,
               address: userRegistrationAddress,
               functionName: 'registerPharmacy',
-              args: [username, additionalDetails.licenseNumber, additionalDetails.address]
+              args: [username, additionalDetails.licenseNumber || '', additionalDetails.address || ''] // Provide default values
             });
             break;
           case 'Supplier':
@@ -137,7 +132,7 @@ const RegistrationScreen: React.FC = () => {
               abi: userRegistrationABI,
               address: userRegistrationAddress,
               functionName: 'registerSupplier',
-              args: [username, additionalDetails.companyName, additionalDetails.contactInfo]
+              args: [username, additionalDetails.companyName || '', additionalDetails.contactInfo || ''] // Provide default values
             });
             break;
           default:
@@ -276,4 +271,5 @@ const RegistrationScreen: React.FC = () => {
     </div>
   );
 };
+
 export default RegistrationScreen;
