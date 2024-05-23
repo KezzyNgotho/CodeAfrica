@@ -20,7 +20,7 @@ const MedicineAvailability: React.FC<MedicineAvailabilityProps> = ({ medicineAva
     try {
       let result;
       if (searchType === 'id') {
-        result = await medicineAvailabilityContract.checkAvailabilityById(medicineId);
+        result = await medicineAvailabilityContract.checkAvailabilityById(searchValue);
       } else {
         result = await medicineAvailabilityContract.checkAvailabilityByName(searchValue);
       }
@@ -37,17 +37,13 @@ const MedicineAvailability: React.FC<MedicineAvailabilityProps> = ({ medicineAva
     }
   };
 
+  const handleSearchValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
   const handleSearchTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSearchType(event.target.value);
     setSearchValue(''); // Reset search value when search type changes
-    setMedicineId('');
-    setMedicineName('');
-    setAvailability(null);
-    setErrorMessage('');
-  };
-
-  const handleSearchValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
     setMedicineId('');
     setMedicineName('');
     setAvailability(null);
@@ -64,8 +60,8 @@ const MedicineAvailability: React.FC<MedicineAvailabilityProps> = ({ medicineAva
               <Form.Label>Search By</Form.Label>
               <Form.Control as="select" value={searchType} onChange={(e) => setSearchType(e.target.value)}>
                 <option value="">Select</option>
-                  <option value="id">Medicine ID</option>
-                  <option value="name">Medicine Name</option>
+                <option value="id">Medicine ID</option>
+                <option value="name">Medicine Name</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="searchValue">

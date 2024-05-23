@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-//import '../../src/styles/DynamicPricing.css';
 
-const DynamicPricingComponent = ({ updateMedicinePrice }) => {
-  const [pin, setPin] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [newPrice, setNewPrice] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [authSuccess, setAuthSuccess] = useState(false);
+interface DynamicPricingComponentProps {
+  updateMedicinePrice: (medicineId: number, newPrice: number) => Promise<void>;
+}
+
+const DynamicPricingComponent: React.FC<DynamicPricingComponentProps> = ({ updateMedicinePrice }) => {
+  const [pin, setPin] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [newPrice, setNewPrice] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [authSuccess, setAuthSuccess] = useState<boolean>(false);
 
   const handleAuthenticate = () => {
     if (pin === '1234') {
@@ -20,21 +23,26 @@ const DynamicPricingComponent = ({ updateMedicinePrice }) => {
 
   const handleUpdateMedicinePrice = async () => {
     try {
-      // Proceed with updating medicine price
-      await updateMedicinePrice(1, newPrice); // Example medicineId and newPrice
+      const parsedNewPrice = parseFloat(newPrice);
+      if (isNaN(parsedNewPrice) || parsedNewPrice <= 0) {
+        setErrorMessage('Please enter a valid price.');
+        return;
+      }
+      await updateMedicinePrice(1, parsedNewPrice); // Example medicineId and newPrice
       setSuccessMessage('Medicine price updated successfully');
+      setErrorMessage('');
     } catch (error) {
       console.error('Error updating medicine price:', error);
       setErrorMessage('Error updating medicine price');
     }
   };
 
-  const handlePinChange = (event) => {
+  const handlePinChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value);
     setErrorMessage(''); // Clear error message when PIN is being typed
   };
 
-  const handleNewPriceChange = (event) => {
+  const handleNewPriceChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewPrice(event.target.value);
     setSuccessMessage(''); // Clear success message when new price is being typed
   };
@@ -73,6 +81,7 @@ const DynamicPricingComponent = ({ updateMedicinePrice }) => {
             Update Medicine Price
           </Button>
           {successMessage && <Alert variant="success" className="success-message">{successMessage}</Alert>}
+          {errorMessage && <Alert variant="danger" className="error-message">{errorMessage}</Alert>}
         </div>
       )}
     </div>

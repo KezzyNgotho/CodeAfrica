@@ -1,5 +1,5 @@
 // HospitalsManagement.js
-import React from 'react';
+
 
 const HospitalsManagement = () => {
   return (

@@ -34,10 +34,10 @@ const MedicineProvider = () => {
     switch (activeLink) {
         case "#medicine-availability":
         return <MedicineAvailabilityChecker medicineAvailabilityContract={{
-          checkAvailabilityById: function (id: string): Promise<{ id: string; name: string; availability: boolean; }> {
+          checkAvailabilityById: function (_id: string): Promise<{ id: string; name: string; availability: boolean; }> {
             throw new Error("Function not implemented.");
           },
-          checkAvailabilityByName: function (name: string): Promise<{ id: string; name: string; availability: boolean; }> {
+          checkAvailabilityByName: function (__name: string): Promise<{ id: string; name: string; availability: boolean; }> {
             throw new Error("Function not implemented.");
           }
         }} />;
@@ -47,7 +47,7 @@ const MedicineProvider = () => {
         return <DynamicPricingMechanism updateMedicinePrice={undefined} />;
       
       case "#procurement-financing":
-        function handleFinanceProcurement(amount: number): Promise<void> {
+        function handleFinanceProcurement(_amount: number): Promise<void> {
           throw new Error("Function not implemented.");
         }
 
