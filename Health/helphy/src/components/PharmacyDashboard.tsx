@@ -8,7 +8,7 @@ import DynamicPricingMechanism from '../components/DynamicPricing';
 import MedicineAvailabilityChecker from '../components/MedicineAvailability';
 import DigitalHealthRecords from '../components/HealthRecords';
 import PersonalizedHealthcareRecommendations from '../components/HealthCareRecommendations';
-import '../styles/Dashboard.scss'; // Import custom CSS for dashboard styling
+import '../styles/Dashboard.css'; // Import custom CSS for dashboard styling
 
 const PharmacyDashboard: React.FC = () => {
     const [activeLink, setActiveLink] = useState<string>('#asset-tokenization');
