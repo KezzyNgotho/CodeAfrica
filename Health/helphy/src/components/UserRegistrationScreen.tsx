@@ -276,5 +276,4 @@ const RegistrationScreen: React.FC = () => {
     </div>
   );
 };
-
 export default RegistrationScreen;
