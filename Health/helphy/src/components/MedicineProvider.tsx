@@ -33,18 +33,11 @@ const MedicineProvider = () => {
   const renderComponent = () => {
     switch (activeLink) {
         case "#medicine-availability":
-        return <MedicineAvailabilityChecker medicineAvailabilityContract={{
-          checkAvailabilityById: function (_id: string): Promise<{ id: string; name: string; availability: boolean; }> {
-            throw new Error("Function not implemented.");
-          },
-          checkAvailabilityByName: function (__name: string): Promise<{ id: string; name: string; availability: boolean; }> {
-            throw new Error("Function not implemented.");
-          }
-        }} />;
+        return <MedicineAvailabilityChecker/>;
         case '#asset-tokenization':
           return <AssetTokenizationInterface mintTokens={async () => undefined} />;
       case "#dynamic-pricing":
-        return <DynamicPricingMechanism updateMedicinePrice={undefined} />;
+        return <DynamicPricingMechanism />;
       
       case "#procurement-financing":
         function handleFinanceProcurement(_amount: number): Promise<void> {

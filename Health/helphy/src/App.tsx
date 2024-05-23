@@ -6,9 +6,7 @@ import { arbitrum, mainnet } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Update import
 import LandingScreen from '../src/components/LandingScreen';
-
 import RegisterScreen from '../src/components/UserRegistrationScreen';
-import VerifyIdentityScreen from '../src/components/IdentityVerification';
 import Medicineprovider from '../src/components/MedicineProvider'
 import HospitalDashboard from './components/HospitalDashboard';
 import PharmacyDashboard from './components/PharmacyDashboard';
@@ -56,7 +54,6 @@ export default function App() {
           <Route path="/" element={<LandingScreen />} />
         <Route path="/dashboard" element={<Dashboard/>} /> 
           <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/verify-identity" element={<VerifyIdentityScreen />} />
            <Route path="/Dash" element={<Dashboard />} /> 
           <Route path="/MedicineProvider" element={<Medicineprovider />} />
           <Route path="/HospitalDashboard" element={<HospitalDashboard />} />

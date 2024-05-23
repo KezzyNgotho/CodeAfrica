@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
-import { FaUserCircle, FaSignOutAlt, FaCog, FaWarehouse, FaMoneyCheckAlt, FaChartLine, FaHospitalAlt, FaListAlt, FaUserMd, FaAmbulance, FaBars } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaCog, FaWarehouse, FaMoneyCheckAlt, FaChartLine, FaListAlt, FaHospitalAlt, FaUserMd, FaAmbulance, FaBars } from 'react-icons/fa';
 import AssetTokenizationInterface from '../components/AssetTokenization';
 import DeFiDashboard from '../components/DeFiDashboard';
 import ProcurementFinancingSection from '../components/ProcurementFinancing';
@@ -8,7 +8,7 @@ import DynamicPricingMechanism from '../components/DynamicPricing';
 import MedicineAvailabilityChecker from '../components/MedicineAvailability';
 import DigitalHealthRecords from '../components/HealthRecords';
 import PersonalizedHealthcareRecommendations from '../components/HealthCareRecommendations';
-import "../styles/Dashboard.css"; // Import custom CSS for dashboard styling
+import '../styles/Dashboard.scss'; // Import custom CSS for dashboard styling
 
 const PharmacyDashboard: React.FC = () => {
     const [activeLink, setActiveLink] = useState<string>('#asset-tokenization');
@@ -17,7 +17,6 @@ const PharmacyDashboard: React.FC = () => {
         setActiveLink(selectedKey || ''); // Use an empty string if selectedKey is null
     };
     
-
     const renderComponent = () => {
         switch (activeLink) {
             case '#asset-tokenization':
@@ -27,12 +26,9 @@ const PharmacyDashboard: React.FC = () => {
             case '#procurement-financing':
                 return <ProcurementFinancingSection financeProcurement={async () => undefined} />;
             case '#dynamic-pricing':
-                return <DynamicPricingMechanism updateMedicinePrice={() => undefined} />;
+                return <DynamicPricingMechanism  />;
             case '#medicine-availability':
-                return <MedicineAvailabilityChecker medicineAvailabilityContract={{
-                    checkAvailabilityById: async (id: string) => ({ id, name: '', availability: false }),
-                    checkAvailabilityByName: async (name: string) => ({ id: '', name, availability: false })
-                }} />;
+                return <MedicineAvailabilityChecker />;
             case '#health-records':
                 return <DigitalHealthRecords />;
             case '#healthcare-recommendations':
@@ -69,7 +65,7 @@ const PharmacyDashboard: React.FC = () => {
             <Row className="dashboard-body">
                 {/* Side Navigation */}
                 <Col md={3} className="sidebar">
-                    <Nav defaultActiveKey="/dashboard" className="flex-column" onSelect={handleSelect}>
+                    <Nav defaultActiveKey="#asset-tokenization" className="flex-column" onSelect={handleSelect}>
                         <Nav.Link href="#asset-tokenization" active={activeLink === '#asset-tokenization'}>
                             <div className="icon-container">
                                 <FaWarehouse className="icon" />
@@ -110,7 +106,7 @@ const PharmacyDashboard: React.FC = () => {
                             <div className="icon-container">
                                 <FaAmbulance className="icon" />
                             </div>
-                            <span className="link-text">Ambulance</span>
+                            <span className="link-text">Healthcare Recommendations</span>
                         </Nav.Link>
                     </Nav>
                 </Col>
