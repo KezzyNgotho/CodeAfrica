@@ -1,5 +1,4 @@
 // Logout.jsx
-import React from 'react';
 
 const Logout = () => {
     const handleLogout = () => {

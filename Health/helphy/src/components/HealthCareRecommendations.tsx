@@ -1,22 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-const HealthcareRecommendations = ({ performDataAnalytics }) => {
-  const handlePerformDataAnalytics = async () => {
-    try {
-      await performDataAnalytics();
-      alert('Data analytics performed successfully');
-    } catch (error) {
-      console.error('Error performing data analytics:', error);
-      alert('Error performing data analytics');
-    }
-  };
-
+function HealthCareRecommendations() {
   return (
     <div>
-      <h2>Personalized Healthcare Recommendations</h2>
-      <button onClick={handlePerformDataAnalytics}>Perform Data Analytics</button>
+      <h1>recommendations</h1>
     </div>
-  );
-};
+  )
+}
 
-export default HealthcareRecommendations;
+export default HealthCareRecommendations

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-//import '../ProcurementFinancing.css'; // Import custom CSS for Procurement Financing styling
 
-const ProcurementFinancing = ({ financeProcurement }) => {
+interface ProcurementFinancingProps {
+    financeProcurement: (amount: number) => Promise<void>;
+}
+
+const ProcurementFinancing: React.FC<ProcurementFinancingProps> = ({ financeProcurement }) => {
     const handleFinanceProcurement = async () => {
         try {
             await financeProcurement(100); // Example amount
@@ -12,7 +15,7 @@ const ProcurementFinancing = ({ financeProcurement }) => {
             alert('Error financing procurement');
         }
     };
-
+    
     return (
         <div className="procurement-financing-container">
             <h2 className="section-title">Procurement Financing</h2>

@@ -13,22 +13,34 @@ import '../styles/Dashboard.css'; // Import custom CSS for dashboard styling
 const Dashboard: React.FC = () => {
     const [activeLink, setActiveLink] = useState<string>('#asset-tokenization');
 
-    const handleSelect = (selectedKey: string) => {
-        setActiveLink(selectedKey);
+    const handleSelect = (selectedKey: string | null) => {
+        setActiveLink(selectedKey || ''); // Use an empty string if selectedKey is null
     };
+    
 
     const renderComponent = () => {
         switch (activeLink) {
             case '#asset-tokenization':
-                return <AssetTokenizationInterface />;
+                return <AssetTokenizationInterface mintTokens={function (): Promise<void> {
+                    throw new Error('Function not implemented.');
+                } } />;
             case '#defi-dashboard':
                 return <DeFiDashboard />;
             case '#procurement-financing':
-                return <ProcurementFinancingSection />;
+                return <ProcurementFinancingSection financeProcurement={function (amount: number): Promise<void> {
+                    throw new Error('Function not implemented.');
+                } } />;
             case '#dynamic-pricing':
-                return <DynamicPricingMechanism />;
+                return <DynamicPricingMechanism updateMedicinePrice={undefined} />;
             case '#medicine-availability':
-                return <MedicineAvailabilityChecker />;
+                return <MedicineAvailabilityChecker medicineAvailabilityContract={{
+                    checkAvailabilityById: function (id: string): Promise<{ id: string; name: string; availability: boolean; }> {
+                        throw new Error('Function not implemented.');
+                    },
+                    checkAvailabilityByName: function (name: string): Promise<{ id: string; name: string; availability: boolean; }> {
+                        throw new Error('Function not implemented.');
+                    }
+                }} />;
             case '#health-records':
                 return <DigitalHealthRecords />;
             case '#healthcare-recommendations':

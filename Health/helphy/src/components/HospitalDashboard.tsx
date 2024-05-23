@@ -34,25 +34,34 @@ import EmergencyResponseSystem from "../Hospital/EmergencyResponseSystem";
 
 import "../styles/Dashboard.css"; // Import custom CSS for dashboard styling
 
-const HospitalDashboard = () => {
-  const [activeLink, setActiveLink] = useState("#asset-tokenization");
+const HospitalDashboard: React.FC = () => {
+  const [activeLink, setActiveLink] = useState<string>("#asset-tokenization");
 
-  const handleSelect = (selectedKey) => {
-    setActiveLink(selectedKey);
-  };
+  const handleSelect = (selectedKey: string | null) => {
+    setActiveLink(selectedKey || ''); // Use an empty string if selectedKey is null
+};
 
   const renderComponent = () => {
     switch (activeLink) {
-      case "#asset-tokenization":
-        return <AssetTokenizationInterface />;
+      case '#asset-tokenization':
+                return <AssetTokenizationInterface mintTokens={function (): Promise<void> {
+                    throw new Error('Function not implemented.');
+                } } />;
       case "#defi-dashboard":
         return <DeFiDashboard />;
-      case "#procurement-financing":
-        return <ProcurementFinancingSection />;
+        case '#procurement-financing':
+          return <ProcurementFinancingSection financeProcurement={async () => undefined} />;
       case "#dynamic-pricing":
-        return <DynamicPricingMechanism />;
+        return <DynamicPricingMechanism updateMedicinePrice={undefined} />;
       case "#medicine-availability":
-        return <MedicineAvailabilityChecker />;
+        return <MedicineAvailabilityChecker medicineAvailabilityContract={{
+          checkAvailabilityById: function (id: string): Promise<{ id: string; name: string; availability: boolean; }> {
+            throw new Error("Function not implemented.");
+          },
+          checkAvailabilityByName: function (name: string): Promise<{ id: string; name: string; availability: boolean; }> {
+            throw new Error("Function not implemented.");
+          }
+        }} />;
       case "#health-records":
         return <DigitalHealthRecords />;
       case "#healthcare-recommendations":
@@ -108,169 +117,14 @@ const HospitalDashboard = () => {
       </Row>
       <Row className="dashboard-body">
         {/* Side Navigation */}
+       
         <Col md={3} className="sidebar">
           <Nav
             defaultActiveKey="/dashboard"
             className="flex-column"
             onSelect={handleSelect}
           >
-            <Nav.Link
-              href="#asset-tokenization"
-              active={activeLink === "#asset-tokenization"}
-            >
-              <div className="icon-container">
-                <FaWarehouse className="icon" />
-              </div>
-              <span className="link-text">Asset Tokenization</span>
-            </Nav.Link>
-            <Nav.Link
-              href="#defi-dashboard"
-              active={activeLink === "#defi-dashboard"}
-            >
-              <div className="icon-container">
-                <FaMoneyCheckAlt className="icon" />
-              </div>
-              <span className="link-text">DeFi Dashboard</span>
-            </Nav.Link>
-            <Nav.Link
-              href="#procurement-financing"
-              active={activeLink === "#procurement-financing"}
-            >
-              <div className="icon-container">
-                <FaChartLine className="icon" />
-              </div>
-              <span className="link-text">Procurement Financing</span>
-            </Nav.Link>
-
-            <Nav.Link
-  href="#dynamic-pricing"
-  active={activeLink === "#dynamic-pricing"}
->
-  <div className="icon-container">
-    <FaListAlt className="icon" />
-  </div>
-  <span className="link-text">Dynamic Pricing</span>
-</Nav.Link>
-<Nav.Link
-  href="#medicine-availability"
-  active={activeLink === "#medicine-availability"}
->
-  <div className="icon-container">
-    <FaHospitalAlt className="icon" />
-  </div>
-  <span className="link-text">Medicine Availability</span>
-</Nav.Link>
-<Nav.Link
-  href="#health-records"
-  active={activeLink === "#health-records"}
->
-  <div className="icon-container">
-    <FaUserMd className="icon" />
-  </div>
-  <span className="link-text">Health Records</span>
-</Nav.Link>
-<Nav.Link
-  href="#healthcare-recommendations"
-  active={activeLink === "#healthcare-recommendations"}
->
-  <div className="icon-container">
-    <FaAmbulance className="icon" />
-  </div>
-  <span className="link-text">Healthcare Recommendations</span>
-</Nav.Link>
-<Nav.Link
-  href="#appointment-scheduler"
-  active={activeLink === "#appointment-scheduler"}
->
-  <div className="icon-container">
-    <FaUserCircle className="icon" />
-  </div>
-  <span className="link-text">Appointment Scheduler</span>
-</Nav.Link>
-<Nav.Link
-  href="#inventory-management"
-  active={activeLink === "#inventory-management"}
->
-  <div className="icon-container">
-    <FaWarehouse className="icon" />
-  </div>
-  <span className="link-text">Inventory Management</span>
-</Nav.Link>
-<Nav.Link
-  href="#patient-management"
-  active={activeLink === "#patient-management"}
->
-  <div className="icon-container">
-    <FaUserCircle className="icon" />
-  </div>
-  <span className="link-text">Patient Management</span>
-</Nav.Link>
-<Nav.Link
-  href="#billing-and-payment"
-  active={activeLink === "#billing-and-payment"}
->
-  <div className="icon-container">
-    <FaMoneyCheckAlt className="icon" />
-  </div>
-  <span className="link-text">Billing and Payment</span>
-</Nav.Link>
-<Nav.Link
-  href="#medical-records-viewer"
-  active={activeLink === "#medical-records-viewer"}
->
-  <div className="icon-container">
-    <FaChartLine className="icon" />
-  </div>
-  <span className="link-text">Medical Records Viewer</span>
-</Nav.Link>
-<Nav.Link
-  href="#medical-imaging-viewer"
-  active={activeLink === "#medical-imaging-viewer"}
->
-  <div className="icon-container">
-    <FaHospitalAlt className="icon" />
-  </div>
-  <span className="link-text">Medical Imaging Viewer</span>
-</Nav.Link>
-<Nav.Link
-  href="#task-manager"
-  active={activeLink === "#task-manager"}
->
-  <div className="icon-container">
-    <FaListAlt className="icon" />
-  </div>
-  <span className="link-text">Task Manager</span>
-</Nav.Link>
-<Nav.Link
-  href="#analytics-dashboard"
-  active={activeLink === "#analytics-dashboard"}
->
-  <div className="icon-container">
-    <FaChartLine className="icon" />
-  </div>
-  <span className="link-text">Analytics Dashboard</span>
-</Nav.Link>
-<Nav.Link
-  href="#telemedicine-integration"
-  active={activeLink === "#telemedicine-integration"}
->
-  <div className="icon-container">
-    <FaUserCircle className="icon" />
-  </div>
-  <span className="link-text">Telemedicine Integration</span>
-</Nav.Link>
-<Nav.Link
-  href="#emergency-response-system"
-  active={activeLink === "#emergency-response-system"}
->
-  <div className="icon-container">
-    <FaAmbulance className="icon" />
-  </div>
-  <span className="link-text">Emergency Response System</span>
-</Nav.Link>
-
-
-            {/* Add more navigation links for other components */}
+            {/* Navigation Links */}
           </Nav>
         </Col>
         {/* Main Content */}

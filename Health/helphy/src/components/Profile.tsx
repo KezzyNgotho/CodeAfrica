@@ -1,5 +1,4 @@
 // Profile.jsx
-import React from 'react';
 
 const Profile = () => {
     // Add logic to fetch and display user profile information

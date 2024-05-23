@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
-//import '../../src/styles/MedicineAvailability.css'
 
-const MedicineAvailability = ({ medicineAvailabilityContract }) => {
-  const [searchType, setSearchType] = useState('id');
-  const [searchValue, setSearchValue] = useState('');
-  const [medicineId, setMedicineId] = useState('');
-  const [medicineName, setMedicineName] = useState('');
-  const [availability, setAvailability] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+interface MedicineAvailabilityProps {
+  medicineAvailabilityContract: {
+    checkAvailabilityById: (id: string) => Promise<{ id: string; name: string; availability: boolean }>;
+    checkAvailabilityByName: (name: string) => Promise<{ id: string; name: string; availability: boolean }>;
+  };
+}
+
+const MedicineAvailability: React.FC<MedicineAvailabilityProps> = ({ medicineAvailabilityContract }) => {
+  const [searchType, setSearchType] = useState<string>('id');
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [medicineId, setMedicineId] = useState<string>('');
+  const [medicineName, setMedicineName] = useState<string>('');
+  const [availability, setAvailability] = useState<boolean | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleCheckAvailability = async () => {
     try {
@@ -26,25 +32,25 @@ const MedicineAvailability = ({ medicineAvailabilityContract }) => {
       console.error('Error checking medicine availability:', error);
       setMedicineId('');
       setMedicineName('');
-      setAvailability('');
+      setAvailability(null);
       setErrorMessage('Error checking medicine availability');
     }
   };
 
-  const handleSearchTypeChange = (event) => {
+  const handleSearchTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSearchType(event.target.value);
     setSearchValue(''); // Reset search value when search type changes
     setMedicineId('');
     setMedicineName('');
-    setAvailability('');
+    setAvailability(null);
     setErrorMessage('');
   };
 
-  const handleSearchValueChange = (event) => {
+  const handleSearchValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     setMedicineId('');
     setMedicineName('');
-    setAvailability('');
+    setAvailability(null);
     setErrorMessage('');
   };
 
@@ -56,9 +62,10 @@ const MedicineAvailability = ({ medicineAvailabilityContract }) => {
           <Form>
             <Form.Group controlId="searchType">
               <Form.Label>Search By</Form.Label>
-              <Form.Control as="select" value={searchType} onChange={handleSearchTypeChange}>
-                <option value="id">Medicine ID</option>
-                <option value="name">Medicine Name</option>
+              <Form.Control as="select" value={searchType} onChange={(e) => setSearchType(e.target.value)}>
+                <option value="">Select</option>
+                  <option value="id">Medicine ID</option>
+                  <option value="name">Medicine Name</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="searchValue">

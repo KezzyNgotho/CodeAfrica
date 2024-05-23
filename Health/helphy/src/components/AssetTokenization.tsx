@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-//import '../../src/styles/AssetTokenization.css'; // Import custom CSS for AssetTokenization styling
 
-const AssetTokenization = ({ mintTokens }) => {
+interface AssetTokenizationProps {
+  mintTokens: () => Promise<void>; // Define the type of mintTokens function
+}
+
+const AssetTokenization: React.FC<AssetTokenizationProps> = ({ mintTokens }) => {
   const handleMintTokens = async () => {
     try {
       await mintTokens();

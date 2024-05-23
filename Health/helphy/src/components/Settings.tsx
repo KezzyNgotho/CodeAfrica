@@ -1,5 +1,4 @@
 // Settings.jsx
-import React from 'react';
 
 const Settings = () => {
     // Add logic to manage user settings

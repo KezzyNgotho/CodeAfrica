@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, Spinner, Alert, Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Web3 from 'web3';
+import { FaCapsules } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; 
 import '../styles/IdentityVerification.css'; 
 import doctorImage from '../assets/pexels-negativespace-48604.jpg'; 
-import { FaCapsules } from 'react-icons/fa';
 
-const IdentityVerification = () => {
-    const [web3, setWeb3] = useState(null);
-   
-    const [username, setUsername] = useState('');
-    const [loading, setLoading] = useState(false);
-    
-    const [error, setError] = useState('');
+const IdentityVerification: React.FC = () => {
+    const [web3, setWeb3] = useState<Web3 | null>(null);
+    const [username, setUsername] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
 
     useEffect(() => {
         const initWeb3 = async () => {
-            if (window.ethereum) {
+            if (typeof window.ethereum !== 'undefined') {
                 const web3Instance = new Web3(window.ethereum);
                 await window.ethereum.enable();
                 setWeb3(web3Instance);
@@ -45,21 +43,20 @@ const IdentityVerification = () => {
     return (
         <div>
            <Navbar bg="light" expand="lg" style={{ padding: '5px 20px', marginBottom: '20px' }}>
-    <Navbar.Brand href="#">
-        <FaCapsules style={{ marginRight: '5px', color: 'pink' }} />
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto"> 
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">About</Nav.Link>
-            <Nav.Link href="#">Contact</Nav.Link>
-            <Nav.Link href="#">Services</Nav.Link>
-           <Nav.Link href="/register">Register</Nav.Link> 
-            
-        </Nav>
-    </Navbar.Collapse>
-</Navbar>
+                <Navbar.Brand href="#">
+                    <FaCapsules style={{ marginRight: '5px', color: 'pink' }} />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto"> 
+                        <Nav.Link href="#">Home</Nav.Link>
+                        <Nav.Link href="#">About</Nav.Link>
+                        <Nav.Link href="#">Contact</Nav.Link>
+                        <Nav.Link href="#">Services</Nav.Link>
+                        <Nav.Link as={Link} to="/register">Register</Nav.Link> 
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
 
             <div className="background-image">
                 <img src={doctorImage} alt="Doctor" className="doctor-image" />
@@ -88,9 +85,8 @@ const IdentityVerification = () => {
             </div>
             {/* Footer Section */}
             <footer style={{ backgroundColor: '#f8f9fa', padding: '20px', textAlign: 'center', marginTop: 'auto' }}>
-    <p>&copy; 2024 Medical Verification. All rights reserved.</p>
-</footer>
-
+                <p>&copy; 2024 Medical Verification. All rights reserved.</p>
+            </footer>
         </div>
     );
 };

@@ -10,25 +10,29 @@ import DigitalHealthRecords from '../components/HealthRecords';
 import PersonalizedHealthcareRecommendations from '../components/HealthCareRecommendations';
 import '../styles/Dashboard.css'; // Import custom CSS for dashboard styling
 
-const PharmacyDashboard = () => {
-    const [activeLink, setActiveLink] = useState('#asset-tokenization');
+const PharmacyDashboard: React.FC = () => {
+    const [activeLink, setActiveLink] = useState<string>('#asset-tokenization');
 
-    const handleSelect = (selectedKey) => {
-        setActiveLink(selectedKey);
+    const handleSelect = (selectedKey: string | null) => {
+        setActiveLink(selectedKey || ''); // Use an empty string if selectedKey is null
     };
+    
 
     const renderComponent = () => {
         switch (activeLink) {
             case '#asset-tokenization':
-                return <AssetTokenizationInterface />;
+                return <AssetTokenizationInterface mintTokens={() => undefined} />;
             case '#defi-dashboard':
                 return <DeFiDashboard />;
             case '#procurement-financing':
-                return <ProcurementFinancingSection />;
+                return <ProcurementFinancingSection financeProcurement={async () => undefined} />;
             case '#dynamic-pricing':
-                return <DynamicPricingMechanism />;
+                return <DynamicPricingMechanism updateMedicinePrice={() => undefined} />;
             case '#medicine-availability':
-                return <MedicineAvailabilityChecker />;
+                return <MedicineAvailabilityChecker medicineAvailabilityContract={{
+                    checkAvailabilityById: async (id: string) => ({ id, name: '', availability: false }),
+                    checkAvailabilityByName: async (name: string) => ({ id: '', name, availability: false })
+                }} />;
             case '#health-records':
                 return <DigitalHealthRecords />;
             case '#healthcare-recommendations':
