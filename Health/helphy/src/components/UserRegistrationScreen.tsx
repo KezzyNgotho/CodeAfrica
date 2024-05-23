@@ -17,7 +17,6 @@ interface AdditionalDetails {
   postalCode?: string; // New property added
 }
 
-
 const RegistrationScreen: React.FC = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
   const [role, setRole] = useState<string>('');
