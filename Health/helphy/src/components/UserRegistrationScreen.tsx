@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Web3 from 'web3';
 import '../RegistrationScreen.css';
 import { useWalletClient, usePublicClient } from 'wagmi';
-import { userRegistrationABI, userRegistrationAddress } from "../constants/constants"; // Adjust the import path accordingly
+import { userRegistrationABI, userRegistrationAddress } from "../../../constants/constants"; // Adjust the import path accordingly
 
 // Define an interface for the additional details
 interface AdditionalDetails {

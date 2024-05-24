@@ -22,7 +22,7 @@
   },
   "include": ["src",
   "../helphy/src/components/global.d.ts"
-],
+, "../constants"],
   "references": [{ "path": "./tsconfig.node.json" }]
   
 }
