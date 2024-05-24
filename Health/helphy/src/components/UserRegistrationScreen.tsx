@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import '../RegistrationScreen.css';
 import { useWalletClient, usePublicClient } from 'wagmi';
 /* import { userRegistrationABI, userRegistrationAddress } from "../../../constants/constants"; */ // Adjust the import path accordingly
-import {userRegistrationABI, userRegistrationAddress} from '/home/keziah/CodeAfrica/Health/constants/constants.ts';
+import {userRegistrationABI, userRegistrationAddress} from '../components/constants/constants';
 
 // Define an interface for the additional details
 interface AdditionalDetails {
