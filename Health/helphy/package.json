@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://KezzyNgotho.github.io/CodeAfrica/Health/helphy",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
