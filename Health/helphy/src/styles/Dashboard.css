@@ -1,0 +1,107 @@
+/* Dashboard Container */
+.dashboard-container {
+    height: 100vh;
+    display: flex;
+  }
+  
+  /* Top Bar */
+  .dashboard-topbar {
+    background-color: #f4f4f4; /* Light Gray */
+    color: #2C4E80; /* Dark Blue */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .dashboard-topbar h3 {
+    margin: 0;
+  }
+  
+  /* Left side of the top bar */
+  .left-topbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  /* Add some margin between the buttons */
+  .profile-button,
+  .logout-button,
+  .settings-button {
+    margin-left: 10px;
+    color: #2C4E80; /* Dark Blue */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: #fff; /* White */
+    padding: 10px 0;
+    height: 100vh;
+    width: 70px; /* Set width of the sidebar */
+  }
+  
+  .sidebar .nav-link {
+    color: #2C4E80; /* Dark Blue */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column; /* Change direction to column */
+    align-items: center;
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .sidebar .nav-link:hover {
+    color: #f1c40f; /* Sunflower Yellow */
+  }
+  
+  .icon-container {
+    background-color: #A3D8FF; /* Light Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon-container .icon {
+    color: #2C4E80; /* Dark Blue */
+  }
+  
+  .link-text {
+    margin-top: 5px; /* Add margin-top */
+    font-size: 12px; /* Reduced font size */
+  }
+  
+  /* Main Content */
+  .dashboard-body {
+    padding-top: 0;
+    background-color: azure;
+    flex-grow: 1; /* Allow the main content to grow and take remaining space */
+  }
+  
+  .main-content {
+    padding-left: 3px;
+    width: 100%; /* Set the width to 100% for responsiveness */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px; /* Reduce sidebar width on smaller screens */
+    }
+  
+    .link-text {
+      display: none; /* Hide link text on smaller screens */
+    }
+  }
